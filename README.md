@@ -93,6 +93,7 @@ I'd argue that we're essentially generalizing on Arcieri's "protecting the serve
 ## Discussion
 
 From the SRP RFC:
+```
    SRP has been designed not only to counter the threat of casual
    password-sniffing, but also to prevent a determined attacker equipped
    with a dictionary of passwords from guessing at passwords using
@@ -108,6 +109,7 @@ From the SRP RFC:
    passwords.  The exponential computation required to validate a guess
    in this case is much more time-consuming than the hash currently used
    by most UNIX systems.
+```
 
 In other words: using SRP reduces the vulnerability introduced by a lost database from "until everyone changes their passwords" to e.g. 20 minutes of the freshest macaroon expiring.
 
