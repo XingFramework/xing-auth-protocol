@@ -37,7 +37,7 @@ To get the client's transient public key, the base app makes a request to the au
 [Macaroons]
 The backend app generates a random nonce value uses a secret server key to "seal" it, using a keyed HMAC. It now has a token that (effectively) looks like "random value" + the HMAC of the random value. The token is an example of a macaroon; the smallest possible example.
 
-Other values will be added to this macaroon by stripping off the HMAC, adding the new value, and then appending an HMAC keyed with the *stripped HMAC* - any entity can safely perform this process. However, it cannot be "unrolled": you can't remove a value from the token, and you need the original secret key to verify the chain. The process of adding extra values to the macaroon is called "attenuation."
+Other values will be added to this macaroon by stripping off the HMAC, adding the new value, and then appending an HMAC keyed with the *stripped HMAC* - any entity can safely perform this process. However, it cannot be "unrolled": you can't remove a value from the token, and you need the original secret key to verify the chain. The process of adding extra values to the macaroon is called "attenuating" with new "caveats."
 
 The server can immediately attenuate the macaroon with a maximum session length, as well as authorization information like "member of groups x,y,q"
 
@@ -45,7 +45,7 @@ The server can immediately attenuate the macaroon with a maximum session length,
 The base app looks up this user, finds an (opaque) verifier token and the salt value used to generate this verifier for the user. It uses the verifier `v` and a random number `b` to compute `(v + g^b) % N` (`g` and `N` are as above), which is the server's public key.
 
 [Macaroons]
-The server attenuates the macaroon with what's called a "caveat" - in general a caveat is something that the client must arrange to prove before the macaroon can be considered valid. A caveat has a value that identifies what must be proved, as well as some opaque data that a prover can use to determine how to do the proof. In this case, the caveat is "prove that you are <user>" and the data is the salt and public key for the SRP protocol.
+The server attenuates the macaroon with a "third-party caveat" - something that the client must arrange to prove before the macaroon can be considered valid. Such a caveat has a value that identifies what must be proved, as well as some opaque data that a prover can use to determine how to do the proof. In this case, the caveat is "prove that you are <user>" and the data is the salt and public key for the SRP protocol.
 
 The server returns this macaroon to the client. Without the proof of authentication, it's useless - the macaroon could in principle be sent over an unsecured channel.
 
