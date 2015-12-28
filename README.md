@@ -6,10 +6,10 @@ To be clear: this a proposed idea, for discussion and to get the ideas out of my
 What I'm suggesting is a Macaroons based authorization system, using an SRP based local discharge to handle authentication.
 
 For reference:
-http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41892.pdf
-https://www.ietf.org/rfc/rfc2945.txt
-http://srp.stanford.edu/ndss.html
-https://github.com/ecordell/macaroon-session-example
+* http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41892.pdf
+* https://www.ietf.org/rfc/rfc2945.txt
+* http://srp.stanford.edu/ndss.html
+* https://github.com/ecordell/macaroon-session-example
 
 As an aside, there are several libraries that already implement the components of this proposal. While the synthesis of these components seems to be novel, and I would want to have them reviewed more publicly, this isn't a roll-your-own solution.
 
@@ -78,13 +78,13 @@ Either during initial account creation or when changing password.
 
 The base application signals the auth iframe, and updates styling to display the iframe, which contains password change interface. User completes a password change UI, and the IFrame computes an [SRP] authorization verification value, which it makes available to the base application. Base application submits a request to the backend, which authorizes the request and records the identifier.
 
-## Assumptions and thread models
+## Assumptions and threat models [WIP]
 
-Random numbers from Webcrypto
-Sychronizing clocks
-HTTPS required
-User not responsible
-Webcrypto vs. libnacl
+* Random numbers from Webcrypto
+* Sychronizing clocks
+* HTTPS required
+* User not responsible
+* Webcrypto vs. libnacl
 
 https://tonyarcieri.com/whats-wrong-with-webcrypto
 
