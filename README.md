@@ -2,6 +2,7 @@
 Proposal for a future authorization system
 
 ***Note: This is not where to find information about the current Xing authorization system. See the [Xing book](https://xingframework.gitbooks.io/the-xing-framework/content/) for information about how authorization works in Xing currently.***
+
 To be clear: this a proposed idea, for discussion and to get the ideas out of my head so I can work on other things without distraction. I have been thinking about this for quite a while, and it's pretty well considered.
 
 What I'm suggesting is a Macaroons based authorization system, using an SRP based local discharge to handle authentication.
